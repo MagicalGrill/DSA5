@@ -1,0 +1,133 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "DSA5.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "DSA5.Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DSA5.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DSA5.Application.dll": {}
+        }
+      },
+      "DSA5.Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/DSA5.Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DSA5.Entities.dll": {}
+        }
+      },
+      "DSA5.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "DSA5.Application": "1.0.0",
+          "DSA5.Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DSA5.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DSA5.Infrastructure.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DSA5.Application/1.0.0": {
+      "type": "project",
+      "path": "../DSA5.Application/DSA5.Application.csproj",
+      "msbuildProject": "../DSA5.Application/DSA5.Application.csproj"
+    },
+    "DSA5.Entities/1.0.0": {
+      "type": "project",
+      "path": "../DSA5.Entities/DSA5.Entities.csproj",
+      "msbuildProject": "../DSA5.Entities/DSA5.Entities.csproj"
+    },
+    "DSA5.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../DSA5.Infrastructure/DSA5.Infrastructure.csproj",
+      "msbuildProject": "../DSA5.Infrastructure/DSA5.Infrastructure.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "DSA5.Entities >= 1.0.0",
+      "DSA5.Infrastructure >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Lyn\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Host\\DSA5.Host.csproj",
+      "projectName": "DSA5.Host",
+      "projectPath": "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Host\\DSA5.Host.csproj",
+      "packagesPath": "C:\\Users\\Lyn\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Host\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Lyn\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {
+            "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Entities\\DSA5.Entities.csproj": {
+              "projectPath": "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Entities\\DSA5.Entities.csproj"
+            },
+            "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Infrastructure\\DSA5.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Infrastructure\\DSA5.Infrastructure.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.AspNetCore.App": {
+            "privateAssets": "none"
+          },
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

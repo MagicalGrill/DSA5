@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DSA5.Entities\DSA5.Entities.csproj" />
+      <ProjectReference Include="..\DSA5.Infrastructure\DSA5.Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>
