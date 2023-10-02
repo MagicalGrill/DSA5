@@ -4,9 +4,8 @@ using DSA5.Entities.Common.Contracts;
 namespace DSA5.Entities.Welt;
 
 [Table("Vorteil")]
-public class Vorteil : BaseEntity
+public class Vorteil : DescriptedEntity
 {
-    public string Name { get; set; } = null!;
     public int MaxStufe { get; set; }
     public int ApProStufe { get; set; }
 

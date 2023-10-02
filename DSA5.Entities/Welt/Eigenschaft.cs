@@ -4,8 +4,7 @@ using DSA5.Entities.Common.Contracts;
 namespace DSA5.Entities.Welt;
 
 [Table("Eigenschaft")]
-public class Eigenschaft : BaseEntity
+public class Eigenschaft : DescriptedEntity
 {
-    public string Name { get; set; } = null!;
     public string Kuerzel { get; set; } = null!;
 }

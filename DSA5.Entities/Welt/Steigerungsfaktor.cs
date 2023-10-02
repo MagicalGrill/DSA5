@@ -2,8 +2,7 @@
 
 namespace DSA5.Entities.Welt;
 
-public sealed class Steigerungsfaktor : BaseEntity
+public sealed class Steigerungsfaktor : DescriptedEntity
 {
-    public string Name { get; set; } = null!;
     public int ApKostenMultiplikator { get; set; }
 }

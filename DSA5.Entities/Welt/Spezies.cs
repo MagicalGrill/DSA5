@@ -6,9 +6,8 @@ using DSA5.Entities.Welt.Modifikatoren;
 namespace DSA5.Entities.Welt;
 
 [Table("Spezies")]
-public class Spezies : BaseEntity
+public class Spezies : DescriptedEntity
 {
-    public string Name { get; set; } = null!;
     public int Lebenspunkte { get; set; }
     public int Seelenkraft { get; set; }
     public int Zaehigkeit { get; set; }

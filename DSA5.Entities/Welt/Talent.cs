@@ -4,10 +4,8 @@ using DSA5.Entities.Common.Contracts;
 namespace DSA5.Entities.Welt;
 
 [Table("Talent")]
-public sealed class Talent : BaseEntity
+public sealed class Talent : DescriptedEntity
 {
-    public string Name { get; set; } = null!;
-    
     [ForeignKey("Talentgruppe")]
     public int TalentgruppeId { get; set; }
     public Talentgruppe Talentgruppe { get; set; } = null!;

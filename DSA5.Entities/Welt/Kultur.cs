@@ -5,10 +5,8 @@ using DSA5.Entities.Welt.Modifikatoren;
 namespace DSA5.Entities.Welt;
 
 [Table("Kultur")]
-public class Kultur : BaseEntity
+public class Kultur : DescriptedEntity
 {
-    public string Name { get; set; } = null!;
     public int ApWert { get; set; }
-
     public virtual IEnumerable<KulturBedingtTalent> TalentModifikatoren { get; set; } = null!;
 }

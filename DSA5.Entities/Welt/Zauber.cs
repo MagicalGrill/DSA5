@@ -5,10 +5,8 @@ using DSA5.Entities.Meta.Korrelationen;
 namespace DSA5.Entities.Welt;
 
 [Table("Zauber")]
-public class Zauber : BaseEntity
+public class Zauber : DescriptedEntity
 {
-    public string Name { get; set; } = null!;
-    
     [ForeignKey("Steigerungsfaktor")]
     public int SteigerungsfaktorId { get; set; }
     public Steigerungsfaktor Steigerungsfaktor { get; set; } = null!;

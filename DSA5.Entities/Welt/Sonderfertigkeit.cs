@@ -5,9 +5,8 @@ using DSA5.Entities.Welt.Voraussetzungen;
 namespace DSA5.Entities.Welt;
 
 [Table("Sonderfertigkeit")]
-public class Sonderfertigkeit : BaseEntity
+public class Sonderfertigkeit : DescriptedEntity
 {
-    public string Name { get; set; } = null!;
     public int ApKosten { get; set; }
     public string? Zusatzinformation { get; set; }
 

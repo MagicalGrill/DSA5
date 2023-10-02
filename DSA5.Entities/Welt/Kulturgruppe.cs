@@ -1,8 +1,7 @@
-﻿namespace DSA5.Entities.Welt;
+﻿using DSA5.Entities.Common.Contracts;
 
-public enum Kulturgruppe
+namespace DSA5.Entities.Welt;
+
+public class Kulturgruppe : DescriptedEntity
 {
-    Mensch,
-    Elf,
-    Zwerg
 }
