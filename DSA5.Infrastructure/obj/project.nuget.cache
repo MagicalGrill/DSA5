@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Ho/RWxkNdvhMIiqh1DLYfFnoTwvfknjBTexAGyARlLNajDiJlX1XMXNBQ1gC5CvlOtGSmGBGQiJs20OMGcMgJw==",
+  "dgSpecHash": "GFAZG+x/inStsQV+wVMwDESX9cLEbzLlhoXt8egJKqTWNzA6k+ZJklbo41R0s2XqyNY1CoASltzeBwxShU0bkA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Infrastructure\\DSA5.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lyn\\.nuget\\packages\\ardalis.specification\\7.0.0\\ardalis.specification.7.0.0.nupkg.sha512",
     "C:\\Users\\Lyn\\.nuget\\packages\\ardalis.specification.entityframeworkcore\\7.0.0\\ardalis.specification.entityframeworkcore.7.0.0.nupkg.sha512",
+    "C:\\Users\\Lyn\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\Lyn\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\Lyn\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.11\\microsoft.entityframeworkcore.7.0.11.nupkg.sha512",
     "C:\\Users\\Lyn\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.11\\microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512",
     "C:\\Users\\Lyn\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.11\\microsoft.entityframeworkcore.analyzers.7.0.11.nupkg.sha512",

@@ -5,9 +5,9 @@ namespace DSA5.Application;
 
 public static class Startup
 {
-    public static IServiceCollection AddAplication(this IServiceCollection services)
+    public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        var assembly = Assembly.GetExecutingAssembly();
-        return services;
+        return services
+            .AddMediatR(configuration => configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
     }
 }

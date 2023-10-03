@@ -7,15 +7,15 @@ namespace DSA5.Entities.Welt.Modifikatoren;
 public class SpeziesBedingtVorteil : BaseEntity, IVorteilModifikator
 {
     [ForeignKey("Spezies")]
-    public int SpeziesId { get; set; }
+    public Guid SpeziesId { get; set; }
     [ForeignKey("Vorteil")]
-    public int VorteilId { get; set; }
+    public Guid VorteilId { get; set; }
     public Vorteil Vorteil { get; set; } = null!;
     public int Stufe { get; set; }
 
     public Eigenschaft? Eigenschaft { get; set; } = null;
     
     [ForeignKey("Talent")]
-    public int? TalentId { get; set; }
+    public Guid? TalentId { get; set; }
     public Talent? Talent { get; set; }
 }

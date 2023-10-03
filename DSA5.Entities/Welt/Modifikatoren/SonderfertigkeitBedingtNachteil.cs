@@ -6,9 +6,13 @@ namespace DSA5.Entities.Welt.Modifikatoren;
 [Table("SonderfertigkeitBedingtNachteil")]
 public class SonderfertigkeitBedingtNachteil : BaseEntity, INachteilModifikator
 {
-    public int SonderfertigkeitId { get; set; }
-    public int NachteilId { get; set; }
+    [ForeignKey("Sonderfertigkeit")]
+    public Guid SonderfertigkeitId { get; set; }
+    
+    [ForeignKey("Nachteil")]
+    public Guid NachteilId { get; set; }
     public Nachteil Nachteil { get; set; } = null!;
+    
     public int Stufe { get; set; }
     public Eigenschaft? Eigenschaft { get; set; }
     public Talent? Talent { get; set; }

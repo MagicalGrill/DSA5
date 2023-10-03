@@ -7,9 +7,9 @@ namespace DSA5.Entities.Welt.Modifikatoren;
 public class KulturBedingtTalent : BaseEntity, ITalentModifikator
 {
     [ForeignKey("Kultur")]
-    public int KulturId { get; set; }
+    public Guid KulturId { get; set; }
     [ForeignKey("Talent")]
-    public int TalentId { get; set; }
+    public Guid TalentId { get; set; }
 
     public Talent Talent { get; set; } = null!;
     public int Wert { get; set; }

@@ -7,7 +7,7 @@ namespace DSA5.Entities.Meta.Korrelationen;
 public class ZauberVerbreitung : BaseEntity
 {
     [ForeignKey("Zauber")]
-    public int ZauberId { get; set; }
+    public Guid ZauberId { get; set; }
     [ForeignKey("Tradition")]
-    public int TraditionId { get; set; }
+    public Guid TraditionId { get; set; }
 }

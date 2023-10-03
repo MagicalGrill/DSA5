@@ -7,8 +7,8 @@ namespace DSA5.Entities.Welt.Modifikatoren;
 public class SonderfertigkeitBedingtAnwendungsgebiet : BaseEntity
 {
     [ForeignKey("Sonderfertigkeit")]
-    public int SonderfertigkeitId { get; set; }
+    public Guid SonderfertigkeitId { get; set; }
     [ForeignKey("Anwendungsgebiet")]
-    public int AnwendungsgebietId { get; set; }
+    public Guid AnwendungsgebietId { get; set; }
     public Anwendungsgebiet Anwendungsgebiet { get; set; } = null!;
 }

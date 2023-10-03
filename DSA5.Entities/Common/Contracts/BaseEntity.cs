@@ -2,5 +2,12 @@
 
 public abstract class BaseEntity : IEntity
 {
-    public int Id { get; set; }
+    public BaseEntity()
+    {
+        Created = DateTime.Now;
+        LastUpdated = Created;
+    }
+    public Guid Id { get; set; }
+    public DateTime Created { get; set; }
+    public DateTime LastUpdated { get; set; }
 }

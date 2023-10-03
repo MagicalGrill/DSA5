@@ -7,9 +7,9 @@ namespace DSA5.Entities.Meta.Korrelationen;
 public class SpeziesKorreliertMitKultur : BaseEntity
 {
     [ForeignKey("Spezies")]
-    public int SpeziesId { get; set; }
+    public Guid SpeziesId { get; set; }
     [ForeignKey("Kultur")]
-    public int KulturId { get; set; }
+    public Guid KulturId { get; set; }
     
     public Korrelation Korrelation { get; set; }
 }

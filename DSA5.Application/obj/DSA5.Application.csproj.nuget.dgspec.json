@@ -45,6 +45,10 @@
             "Ardalis.Specification.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.1.1, )"
             }
           },
           "imports": [

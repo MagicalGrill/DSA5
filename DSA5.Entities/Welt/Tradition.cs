@@ -7,6 +7,6 @@ namespace DSA5.Entities.Welt;
 public class Tradition : DescriptedEntity
 {
     [ForeignKey("Eigenschaft")]
-    public int LeiteigenschaftId { get; set; }
+    public Guid LeiteigenschaftId { get; set; }
     public Eigenschaft Leiteigenschaft { get; set; } = null!;
 }

@@ -7,8 +7,8 @@ namespace DSA5.Entities.Meta.Korrelationen;
 public class SpeziesKorreliertMitVorteil : BaseEntity
 {
     [ForeignKey("Spezies")]
-    public int SpeziesId { get; set; }
+    public Guid SpeziesId { get; set; }
     [ForeignKey("Vorteil")]
-    public int VorteilId { get; set; }
+    public Guid VorteilId { get; set; }
     public Korrelation Korrelation { get; set; }
 }

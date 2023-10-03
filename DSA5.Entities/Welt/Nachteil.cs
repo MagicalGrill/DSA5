@@ -11,10 +11,10 @@ public class Nachteil : DescriptedEntity
     public bool IstSchlechteEigenschaft { get; set; }
     
     [ForeignKey("Eigenschaft")]
-    public int? EigenschaftId { get; set; }
+    public Guid? EigenschaftId { get; set; }
     public Eigenschaft? Eigenschaft { get; set; }
     
     [ForeignKey("Talent")]
-    public int? TalentId { get; set; }
+    public Guid? TalentId { get; set; }
     public Talent? Talent { get; set; }
 }

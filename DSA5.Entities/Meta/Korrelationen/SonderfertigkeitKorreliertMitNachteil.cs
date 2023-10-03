@@ -7,8 +7,8 @@ namespace DSA5.Entities.Meta.Korrelationen;
 public class SonderfertigkeitKorreliertMitNachteil : BaseEntity
 {
     [ForeignKey("Sonderfertigkeit")]
-    public int SonderfertigkeitId { get; set; }
+    public Guid SonderfertigkeitId { get; set; }
     [ForeignKey("Nachteil")]
-    public int NachteilId { get; set; }
+    public Guid NachteilId { get; set; }
     public Korrelation Korrelation { get; set; }
 }

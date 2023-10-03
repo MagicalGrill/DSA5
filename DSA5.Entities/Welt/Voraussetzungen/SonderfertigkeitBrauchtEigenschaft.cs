@@ -7,7 +7,8 @@ namespace DSA5.Entities.Welt.Voraussetzungen;
 public class SonderfertigkeitBrauchtEigenschaft : BaseEntity
 {
     [ForeignKey("Sonderfertigkeit")]
-    public int SonderfertigkeitId { get; set; }
+    public Guid SonderfertigkeitId { get; set; }
+    
     public Eigenschaft Eigenschaft { get; set; }
     public int Wert { get; set; }
 }

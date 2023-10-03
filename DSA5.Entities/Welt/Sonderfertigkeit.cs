@@ -10,7 +10,7 @@ public class Sonderfertigkeit : DescriptedEntity
     public int ApKosten { get; set; }
     public string? Zusatzinformation { get; set; }
 
-    [ForeignKey("Anwendungsgebiet")] public int? AnwendungsgebietId { get; set; } = null;
+    [ForeignKey("Anwendungsgebiet")] public Guid? AnwendungsgebietId { get; set; } = null;
     public Anwendungsgebiet? Anwendungsgebiet { get; set; }
 
     public virtual IEnumerable<SonderfertigkeitBrauchtTalent> TalentVoraussetzungen { get; set; } = null!;

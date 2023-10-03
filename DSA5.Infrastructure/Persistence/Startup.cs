@@ -27,7 +27,7 @@ internal static class Startup
     private static DbContextOptionsBuilder UseDatabase(this DbContextOptionsBuilder builder, string connectionString)
         => builder.UseNpgsql(
             connectionString,
-            builder => builder.MigrationsAssembly("Migrators.PostgreSQL")
+            optionsBuilder => optionsBuilder.MigrationsAssembly("Migrators.PostgreSQL")
         );
 
     private static IServiceCollection AddRepositories(this IServiceCollection services)
