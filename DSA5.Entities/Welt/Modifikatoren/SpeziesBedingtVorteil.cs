@@ -13,6 +13,8 @@ public class SpeziesBedingtVorteil : BaseEntity, IVorteilModifikator
     public Vorteil Vorteil { get; set; } = null!;
     public int Stufe { get; set; }
 
+    [ForeignKey("Eigenschaft")]
+    public Guid? EigenschaftId { get; set; }
     public Eigenschaft? Eigenschaft { get; set; } = null;
     
     [ForeignKey("Talent")]
