@@ -3,11 +3,12 @@ using DSA5.Entities.Meta.Korrelationen;
 using DSA5.Entities.Welt;
 using DSA5.Entities.Welt.Modifikatoren;
 using DSA5.Entities.Welt.Voraussetzungen;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DSA5.Infrastructure.Persistence.Context;
 
-public class DsaDbContext : DbContext
+public class DsaDbContext : IdentityDbContext
 {
     // Welt
     public DbSet<Anwendungsgebiet> Anwendungsgebiete { get; set; } = null!;

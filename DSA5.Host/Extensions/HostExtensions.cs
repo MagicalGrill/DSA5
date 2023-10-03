@@ -10,9 +10,6 @@ public static class HostExtensions
     {
         builder.Services.AddInfrastructure(builder.Configuration);
         builder.Services.AddApplication();
-
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new() { Title = "DSA5 API", Version = "v1" }));
     }
 
     public static void RegisterEndpointDefinitions(this WebApplication app)

@@ -9,13 +9,17 @@
     <ItemGroup>
       <ProjectReference Include="..\DSA5.Application\DSA5.Application.csproj" />
       <ProjectReference Include="..\DSA5.Entities\DSA5.Entities.csproj" />
+      <ProjectReference Include="..\DSA5.Shared\DSA5.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="7.0.0" />
       <PackageReference Include="MediatR" Version="12.1.1" />
+      <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.11" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.11" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.11" />
       <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Identity.Web" Version="2.14.0" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
     </ItemGroup>
 

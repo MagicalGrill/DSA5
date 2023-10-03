@@ -58,7 +58,7 @@ public class SpeziesEndpointDefinition : IEndpointDefinition
             Zaehigkeit = spezies.Zaehigkeit
         };
         var createdSpezies = await mediator.Send(createSpezies);
-        return Results.CreatedAtRoute("GetSpeziesById", new { createdSpezies.Id }, createdSpezies);
+        return Results.CreatedAtRoute(nameof(GetSpeziesById), new { createdSpezies.Id }, createdSpezies);
     }
 
     private async Task<IResult> UpdateSpezies(IMediator mediator, Spezies spezies, Guid id)
