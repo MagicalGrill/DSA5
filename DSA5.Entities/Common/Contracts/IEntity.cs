@@ -1,6 +1,6 @@
 ﻿namespace DSA5.Entities.Common.Contracts;
 
-public interface IEntity<out TId>
+public interface IEntity
 {
-    TId Id { get; }
+    int Id { get; set; }
 }

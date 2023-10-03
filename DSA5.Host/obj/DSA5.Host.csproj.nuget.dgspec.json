@@ -41,6 +41,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Ardalis.Specification.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -136,6 +142,9 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+              "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Application\\DSA5.Application.csproj": {
+                "projectPath": "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Application\\DSA5.Application.csproj"
+              },
               "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Entities\\DSA5.Entities.csproj": {
                 "projectPath": "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Entities\\DSA5.Entities.csproj"
               },
@@ -217,6 +226,24 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Ardalis.Specification.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            },
+            "Microsoft.Extensions.Options.ConfigurationExtensions": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.11, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

@@ -7,6 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DSA5.Application\DSA5.Application.csproj" />
       <ProjectReference Include="..\DSA5.Entities\DSA5.Entities.csproj" />
       <ProjectReference Include="..\DSA5.Infrastructure\DSA5.Infrastructure.csproj" />
     </ItemGroup>

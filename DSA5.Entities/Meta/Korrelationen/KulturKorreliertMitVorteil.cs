@@ -1,6 +1,8 @@
-﻿namespace DSA5.Entities.Meta.Korrelationen;
+﻿using DSA5.Entities.Common.Contracts;
 
-public class KulturKorreliertMitVorteil
+namespace DSA5.Entities.Meta.Korrelationen;
+
+public class KulturKorreliertMitVorteil : BaseEntity
 {
     
 }

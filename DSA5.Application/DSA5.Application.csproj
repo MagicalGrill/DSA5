@@ -10,4 +10,8 @@
       <ProjectReference Include="..\DSA5.Entities\DSA5.Entities.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="7.0.0" />
+    </ItemGroup>
+
 </Project>

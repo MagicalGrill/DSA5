@@ -1,6 +1,6 @@
 ﻿using DSA5.Entities.Common.Contracts;
 
-namespace DSA5.Entities.Welt;
+namespace DSA5.Entities.Meta;
 
 public sealed class Steigerungsfaktor : DescriptedEntity
 {
