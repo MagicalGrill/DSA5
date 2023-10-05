@@ -2,6 +2,7 @@
 using DSA5.Infrastructure.Auth;
 using DSA5.Infrastructure.Common;
 using DSA5.Infrastructure.Persistence;
+using DSA5.Infrastructure.Persistence.Initialization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,13 @@ public static class Startup
             .AddServices();
     }
 
+    public static async Task InitializeDatabasesAsync(this IServiceProvider services,
+        CancellationToken cancellationToken = default)
+    {
+        using var scope = services.CreateScope();
+        await scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>()
+            .InitializeDatabaseAsync(cancellationToken);
+    }
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration config) =>
         builder.UseAuthentication()
             .UseCurrentUser()

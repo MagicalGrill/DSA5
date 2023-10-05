@@ -1,7 +1,7 @@
 {
   "SecuritySettings": {
     "Provider":"Jwt",
-    "RequireConfirmedAccount":true,
+    "RequireConfirmedAccount":false,
     "JwtSettings": {
       "Key": "SecureKey123",
       "TokenExpirationInMinutes": 60,

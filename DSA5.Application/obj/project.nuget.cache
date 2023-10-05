@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "A+JzaZS2PtIp5uuRgAi4QuEwt2SqPYcSEIeCxZ16qu22AT0U2m5n9yn1OqIV00D+J2a2h0dNH+nMZVvmxs34FA==",
+  "dgSpecHash": "WAEbGai6M2U/P+dIHdDt0yNBpS+tiHmxbzL0P5A3UWHDVy+KNE5nZ2Z0gJUSJGOlnLA0N3XGjKbCrKqT8my+2g==",
   "success": true,
   "projectFilePath": "C:\\Users\\Lyn\\RiderProjects\\DSA5\\DSA5.Application\\DSA5.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lyn\\.nuget\\packages\\ardalis.specification\\7.0.0\\ardalis.specification.7.0.0.nupkg.sha512",
     "C:\\Users\\Lyn\\.nuget\\packages\\ardalis.specification.entityframeworkcore\\7.0.0\\ardalis.specification.entityframeworkcore.7.0.0.nupkg.sha512",
+    "C:\\Users\\Lyn\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
+    "C:\\Users\\Lyn\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\Lyn\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.7.1\\fluentvalidation.dependencyinjectionextensions.11.7.1.nupkg.sha512",
     "C:\\Users\\Lyn\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
     "C:\\Users\\Lyn\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\Lyn\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.6\\microsoft.entityframeworkcore.6.0.6.nupkg.sha512",

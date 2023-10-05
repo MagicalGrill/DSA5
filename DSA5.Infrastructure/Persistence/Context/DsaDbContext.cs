@@ -3,6 +3,7 @@ using DSA5.Entities.Meta.Korrelationen;
 using DSA5.Entities.Welt;
 using DSA5.Entities.Welt.Modifikatoren;
 using DSA5.Entities.Welt.Voraussetzungen;
+using DSA5.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -54,6 +55,10 @@ public class DsaDbContext : IdentityDbContext
     public DbSet<SpeziesKorreliertMitVorteil> SpeziesVorteilKorrelationen { get; set; } = null!;
     public DbSet<ZauberVerbreitung> ZauberVerbreitungen { get; set; } = null!;
 
+    // Identity
+    public DbSet<DsaUser> DsaUsers { get; set; } = null!;
+    public DbSet<DsaRole> DsaRoles { get; set; } = null!;
+    
     public DsaDbContext(DbContextOptions options) : base(options)
     {
     }

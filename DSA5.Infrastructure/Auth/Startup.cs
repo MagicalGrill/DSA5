@@ -1,6 +1,7 @@
 ﻿using DSA5.Application.Common.Interfaces;
 using DSA5.Infrastructure.Auth.AzureAd;
 using DSA5.Infrastructure.Auth.Jwt;
+using DSA5.Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,8 +12,9 @@ internal static class Startup
 {
     internal static IServiceCollection AddAuth(this IServiceCollection services, IConfiguration config)
     {
-        services.AddCurrentUser();
-        
+        services.AddCurrentUser()
+            .AddIdentity();
+
         services.Configure<SecuritySettings>(config.GetSection(nameof(SecuritySettings)));
         return config["SecuritySettings:Provider"]!.Equals("AzureAd", StringComparison.OrdinalIgnoreCase)
             ? services.AddAzureAdAuth(config)

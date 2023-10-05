@@ -1,5 +1,6 @@
 ﻿using DSA5.Application.Common.Persistence;
 using DSA5.Infrastructure.Persistence.Context;
+using DSA5.Infrastructure.Persistence.Initialization;
 using DSA5.Infrastructure.Persistence.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +21,9 @@ internal static class Startup
             var databaseSettings = provider.GetRequiredService<IOptions<DatabaseSettings>>().Value;
             optionsBuilder.UseInMemoryDatabase(databaseName: "DsaDb");
         })
-            
+            .AddTransient<IDatabaseInitializer, DatabaseInitializer>()
+            .AddTransient<DsaDbInitializer>()
+            .AddTransient<DsaDbSeeder>()
             .AddRepositories();
     }
 

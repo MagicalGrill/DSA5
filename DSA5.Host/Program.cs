@@ -13,6 +13,8 @@ builder.Services.AddSwaggerGen(c => c.SwaggerDoc("v1", new() { Title = "DSA5 API
 
 var app = builder.Build();
 
+await app.Services.InitializeDatabasesAsync();
+
 app.UseInfrastructure(builder.Configuration);
 app.RegisterEndpointDefinitions();
 
