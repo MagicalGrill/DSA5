@@ -12,7 +12,6 @@ internal sealed partial class UserService : IUserService
         {
             Email = request.Email,
             UserName = request.UserName,
-            IsActive = false,
             ImageUrl = null
         };
 

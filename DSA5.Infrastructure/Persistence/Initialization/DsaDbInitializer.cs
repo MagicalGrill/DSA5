@@ -31,6 +31,6 @@ internal sealed class DsaDbInitializer
 
     private async Task SeedDatabaseAsync(CancellationToken cancellationToken)
     {
-        await _seeder.SeedDatabaseAsync(_dbContext, cancellationToken);
+        await _seeder.SeedDatabaseAsync(cancellationToken);
     }
 }

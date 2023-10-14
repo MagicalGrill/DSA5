@@ -3,7 +3,7 @@
     "Provider":"Jwt",
     "RequireConfirmedAccount":false,
     "JwtSettings": {
-      "Key": "SecureKey123",
+      "Key": "ThisIsDefinitelyTheMostSecureKeyYouveEverSeen!",
       "TokenExpirationInMinutes": 60,
       "RefreshTokenExpirationInDays": 7
     }

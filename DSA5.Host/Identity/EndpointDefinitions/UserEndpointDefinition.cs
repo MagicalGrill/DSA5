@@ -13,7 +13,7 @@ public class UserEndpointDefinition : IEndpointDefinition
         users.MapPost("/", SelfRegister)
             .WithName(nameof(SelfRegister));
     }
-
+    
     private async Task<IResult> SelfRegister(HttpContext httpContext, IUserService userService, [FromBody] CreateUserRequest request)
     {
         var result = await userService.CreateAsync(request, GetOriginFromRequest(httpContext));

@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using DSA5.Infrastructure.Auth;
 using DSA5.Infrastructure.Common;
+using DSA5.Infrastructure.Common.Settings;
 using DSA5.Infrastructure.Persistence;
 using DSA5.Infrastructure.Persistence.Initialization;
 using Microsoft.AspNetCore.Builder;
@@ -15,6 +16,7 @@ public static class Startup
     {
         return services
             .AddAuth(config)
+            .AddCorsPolicy(config)
             .AddMediatR(configuration => configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()))
             .AddPersistence()
             .AddServices();
@@ -28,7 +30,9 @@ public static class Startup
             .InitializeDatabaseAsync(cancellationToken);
     }
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration config) =>
-        builder.UseAuthentication()
+        builder
+            .UseCorsPolicy()
+            .UseAuthentication()
             .UseCurrentUser()
             .UseAuthorization();
 }

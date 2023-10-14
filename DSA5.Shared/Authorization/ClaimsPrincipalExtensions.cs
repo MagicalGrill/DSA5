@@ -4,6 +4,8 @@ namespace DSA5.Shared.Authorization;
 
 public static class ClaimsPrincipalExtensions
 {
+    public static string? GetEmail(this ClaimsPrincipal principal)
+        => principal.FindFirstValue(ClaimTypes.Email);
     public static string? GetUserId(this ClaimsPrincipal principal)
         => principal.FindFirstValue(ClaimTypes.NameIdentifier);
 
