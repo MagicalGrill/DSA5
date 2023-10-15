@@ -1,17 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using DSA5.Entities.Common.Contracts;
-using DSA5.Entities.Welt.Voraussetzungen;
+using DSA5.Entities.Meta.Korrelationen;
 
 namespace DSA5.Entities.Welt;
 
-[Table("Sonderfertigkeit")]
+[Table(nameof(Sonderfertigkeit))]
 public class Sonderfertigkeit : DescriptedEntity
 {
     public int ApKosten { get; set; }
-    public string? Zusatzinformation { get; set; }
-
-    [ForeignKey("Anwendungsgebiet")] public Guid? AnwendungsgebietId { get; set; } = null;
-    public Anwendungsgebiet? Anwendungsgebiet { get; set; }
 
     public virtual IEnumerable<SonderfertigkeitBrauchtTalent> TalentVoraussetzungen { get; set; } = null!;
     public virtual IEnumerable<SonderfertigkeitBrauchtSonderfertigkeit> SonderfertigkeitVoraussetzungen { get; set; } = null!;

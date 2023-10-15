@@ -2,7 +2,6 @@
 using DSA5.Entities.Meta.Korrelationen;
 using DSA5.Entities.Welt;
 using DSA5.Entities.Welt.Modifikatoren;
-using DSA5.Entities.Welt.Voraussetzungen;
 using DSA5.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -37,22 +36,14 @@ public class DsaDbContext : IdentityDbContext
     public DbSet<SonderfertigkeitBrauchtVorteil> SonderfertigkeitVorteilVoraussetzungen { get; set; } = null!;
 
     // Modifikatoren
-    public DbSet<KulturBedingtTalent> KulturTalentModifikatoren { get; set; } = null!;
-
     public DbSet<SonderfertigkeitBedingtAnwendungsgebiet> SonderfertigkeitAnwendungsgebietModifikatoren { get; set; } =
         null!;
 
     public DbSet<SonderfertigkeitBedingtNachteil> SonderfertigkeitNachteilModifikatoren { get; set; } = null!;
     public DbSet<SpeziesBedingtEigenschaft> SpeziesEigenschaftModifikatoren { get; set; } = null!;
-    public DbSet<SpeziesBedingtVorteil> SpeziesVorteilModifikatoren { get; set; } = null!;
 
     // Korrelationen
-    public DbSet<KulturKorreliertMitVorteil> KulturVorteilKorrelationen { get; set; } = null!;
     public DbSet<LiturgieVerbreitung> LiturgieVerbreitungen { get; set; } = null!;
-    public DbSet<SonderfertigkeitKorreliertMitNachteil> SonderfertigkeitNachteilKorrelationen { get; set; } = null!;
-    public DbSet<SpeziesKorreliertMitKultur> SpeziesKulturKorrelationen { get; set; } = null!;
-    public DbSet<SpeziesKorreliertMitNachteil> SpeziesNachteilKorrelationen { get; set; } = null!;
-    public DbSet<SpeziesKorreliertMitVorteil> SpeziesVorteilKorrelationen { get; set; } = null!;
     public DbSet<ZauberVerbreitung> ZauberVerbreitungen { get; set; } = null!;
 
     // Identity

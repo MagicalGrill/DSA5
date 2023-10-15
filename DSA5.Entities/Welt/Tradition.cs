@@ -3,10 +3,12 @@ using DSA5.Entities.Common.Contracts;
 
 namespace DSA5.Entities.Welt;
 
-[Table("Tradition")]
+[Table(nameof(Tradition))]
 public class Tradition : DescriptedEntity
 {
-    [ForeignKey("Eigenschaft")]
+    public int ApKosten { get; set; }
+    [ForeignKey(nameof(Tradition))]
     public Guid LeiteigenschaftId { get; set; }
+    
     public Eigenschaft Leiteigenschaft { get; set; } = null!;
 }

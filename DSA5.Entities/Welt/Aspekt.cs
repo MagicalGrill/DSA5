@@ -3,8 +3,8 @@ using DSA5.Entities.Common.Contracts;
 
 namespace DSA5.Entities.Welt;
 
-[Table(nameof(Eigenschaft))]
-public class Eigenschaft : DescriptedEntity
+[Table(nameof(Aspekt))]
+public class Aspekt : DescriptedEntity
 {
-    public string Kuerzel { get; set; } = null!;
+    
 }

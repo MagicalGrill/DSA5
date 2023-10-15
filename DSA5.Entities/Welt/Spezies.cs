@@ -5,7 +5,7 @@ using DSA5.Entities.Welt.Modifikatoren;
 
 namespace DSA5.Entities.Welt;
 
-[Table("Spezies")]
+[Table(nameof(Spezies))]
 public class Spezies : DescriptedEntity
 {
     public int Lebenspunkte { get; set; }
@@ -15,6 +15,9 @@ public class Spezies : DescriptedEntity
     public int ApKosten { get; set; }
 
     public virtual IEnumerable<SpeziesBedingtEigenschaft> EigenschaftModifikatoren { get; set; } = null!;
-    public virtual IEnumerable<SpeziesBedingtVorteil> VorteilModifikatoren { get; set; } = null!;
-    public virtual IEnumerable<SpeziesKorreliertMitKultur> KulturKorrelationen { get; set; } = null!;
+    
+    public virtual IEnumerable<SpeziesEmpfiehltKultur> EmpfohleneKulturen { get; set; } = null!;
+    public virtual IEnumerable<SpeziesEmpfiehltVorteil> EmpfohleneVorteile { get; set; } = null!;
+    public virtual IEnumerable<SpeziesEmpfiehltNachteil> EmpfohleneNachteile { get; set; } = null!;
+
 }

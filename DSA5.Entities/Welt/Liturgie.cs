@@ -1,28 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using DSA5.Entities.Common.Contracts;
-using DSA5.Entities.Meta;
-using DSA5.Entities.Meta.Korrelationen;
+﻿using DSA5.Entities.Meta.Korrelationen;
 
 namespace DSA5.Entities.Welt;
 
-[Table("Liturgie")]
-public class Liturgie : DescriptedEntity
+public class Liturgie : Talent
 {
-    [ForeignKey("Steigerungsfaktor")]
-    public Guid SteigerungsfaktorId { get; set; }
-    public Steigerungsfaktor Steigerungsfaktor { get; set; } = null!;
-    
-    [ForeignKey("Eigenschaft")]
-    public Guid Wurf1Id { get; set; }
-    public Eigenschaft Wurf1 { get; set; } = null!;
-    
-    [ForeignKey("Eigenschaft")]
-    public Guid Wurf2Id { get; set; }
-    public Eigenschaft Wurf2 { get; set; } = null!;
-    
-    [ForeignKey("Eigenschaft")]
-    public Guid Wurf3Id { get; set; }
-    public Eigenschaft Wurf3 { get; set; } = null!;
-
     public virtual IEnumerable<LiturgieVerbreitung> Verbreitung { get; set; } = null!;
 }
