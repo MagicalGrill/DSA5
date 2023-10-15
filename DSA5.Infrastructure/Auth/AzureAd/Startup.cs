@@ -9,7 +9,15 @@ internal static class Startup
 {
     internal static IServiceCollection AddAzureAdAuth(this IServiceCollection services, IConfiguration config)
     {
-        services.AddAuthorization()
+        services.AddAuthorization(
+                options =>
+                {
+                    foreach (var (policy, claim) in IdentityData.PermissionTypes)
+                    {
+                        options.AddPolicy(policy, cfg => cfg.RequireClaim(claim, "true"));
+                    }
+                }
+            )
             .AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

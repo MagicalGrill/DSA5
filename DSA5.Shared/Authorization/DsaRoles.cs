@@ -6,12 +6,12 @@ public static class DsaRoles
 {
     public const string Admin = nameof(Admin);
     public const string Basic = nameof(Basic);
+    public const string Guardian = nameof(Guardian);
 
     public static IEnumerable<string> DefaultRoles { get; } = new ReadOnlyCollection<string>(new[]
     {
         Admin,
+        Guardian,
         Basic
     });
-
-    public static bool IsDefault(string roleName) => DefaultRoles.Any(r => r.Equals(roleName));
 }

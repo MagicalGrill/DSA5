@@ -36,7 +36,7 @@ public class ConfigureJwtBearerOptions : IConfigureNamedOptions<JwtBearerOptions
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(key),
-            ValidateIssuer = false,
+            ValidateIssuer = true,
             ValidateLifetime = true,
             ValidateAudience = false,
             RoleClaimType = ClaimTypes.Role,

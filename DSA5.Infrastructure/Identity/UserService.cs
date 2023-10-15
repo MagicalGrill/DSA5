@@ -32,9 +32,4 @@ internal sealed partial class UserService : IUserService
     {
         return await _userManager.FindByEmailAsync(email) is not null;
     }
-
-    public async Task<bool> ExistsWithNameAsync(string name)
-    {
-        return await _userManager.FindByNameAsync(name) is not null;
-    }
 }

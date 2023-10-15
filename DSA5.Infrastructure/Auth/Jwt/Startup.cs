@@ -14,7 +14,15 @@ internal static class Startup
         services.AddSingleton<IConfigureOptions<JwtBearerOptions>, ConfigureJwtBearerOptions>();
 
         return services
-            .AddAuthorization()
+            .AddAuthorization(
+                options =>
+                {
+                    foreach (var (policy, claim) in IdentityData.PermissionTypes)
+                    {
+                        options.AddPolicy(policy, cfg => cfg.RequireClaim(claim, "true"));
+                    }
+                }
+            )
             .AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

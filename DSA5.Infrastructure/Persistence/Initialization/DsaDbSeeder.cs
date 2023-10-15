@@ -1,4 +1,5 @@
-﻿using DSA5.Infrastructure.Identity;
+﻿using DSA5.Application.Common.Exceptions;
+using DSA5.Infrastructure.Identity;
 using DSA5.Shared.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ internal class DsaDbSeeder
     {
         await SeedRolesAsync();
         await SeedUsersAsync();
+        await AssignRolesAsync();
     }
 
     private async Task SeedRolesAsync()
@@ -39,13 +41,43 @@ internal class DsaDbSeeder
         var admin = new DsaUser
         {
             UserName = "Admin",
-            Email = "Sith@admin.com"
+            Email = "sith@admin.com"
         };
-        if (await _userManager.FindByNameAsync(admin.UserName) is not null)
+        
+        if (await _userManager.FindByNameAsync(admin.UserName) is null)
+        {
+            await _userManager.CreateAsync(admin, password);
+        }
+
+        var guardian = new DsaUser()
+        {
+            UserName = "Guardian",
+            Email = "guardian@galaxy.com"
+        };
+        
+        if(await _userManager.FindByNameAsync(guardian.UserName) is null)
+        {
+            await _userManager.CreateAsync(guardian, password);
+        }
+
+    }
+
+    private async Task AssignRolesAsync()
+    {
+        var admin = await _userManager.FindByNameAsync("Admin");
+        if (admin is null)
+        {
+            throw new NotFoundException("Benutzer 'Admin' wurde nicht gefunden.");
+        }
+
+        await _userManager.AddToRolesAsync(admin, DsaRoles.DefaultRoles);
+
+        var guardian = await _userManager.FindByNameAsync("Guardian");
+        if (guardian is null)
         {
             return;
         }
-        
-       var result = await _userManager.CreateAsync(admin, password);
+
+        await _userManager.AddToRolesAsync(guardian, new[] { DsaRoles.Guardian, DsaRoles.Basic });
     }
 }

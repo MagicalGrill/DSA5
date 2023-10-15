@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using DSA5.Application.Common.Exceptions;
 using DSA5.Application.Identity.Tokens;
 using DSA5.Infrastructure.Auth;
@@ -69,7 +70,7 @@ public sealed class TokenService : ITokenService
 
     private async Task<TokenResponse> GenerateTokensAndUpdateUser(DsaUser user)
     {
-        var token = GenerateJwt(user);
+        var token = await GenerateJwt(user);
 
         user.RefreshToken = GenerateRefreshToken();
         user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays);
@@ -79,16 +80,20 @@ public sealed class TokenService : ITokenService
         return new TokenResponse(token, user.RefreshToken, user.RefreshTokenExpiryTime);
     }
 
-    private string GenerateJwt(DsaUser user) =>
-        GenerateEncryptedToken(GetSigningCredentials(), GetClaims(user));
+    private async Task<string> GenerateJwt(DsaUser user) =>
+        GenerateEncryptedToken(GetSigningCredentials(), await GetClaims(user));
 
-    private IEnumerable<Claim> GetClaims(DsaUser user) =>
-        new List<Claim>()
+    private async Task<IEnumerable<Claim>> GetClaims(DsaUser user)
+    {
+        var roles = await _userManager.GetRolesAsync(user);
+        return new List<Claim>()
         {
-            new(ClaimTypes.NameIdentifier, user.Id),
-            new(ClaimTypes.Email, user.Email!),
-            new(ClaimTypes.Name, user.UserName ?? string.Empty)
+            new("id", user.Id),
+            new("email", user.Email!),
+            new("name", user.UserName ?? string.Empty),
+            new("roles", JsonSerializer.Serialize(roles).ToLower())
         };
+    }
 
     private static string GenerateRefreshToken()
     {

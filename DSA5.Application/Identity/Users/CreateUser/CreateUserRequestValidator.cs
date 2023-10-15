@@ -16,9 +16,7 @@ public sealed class CreateUserRequestValidator : CustomValidator<CreateUserReque
 
         RuleFor(user => user.UserName).Cascade(CascadeMode.Stop)
             .NotEmpty()
-            .MinimumLength(6)
-            .MustAsync(async (name, _) => !await userService.ExistsWithNameAsync(name))
-            .WithMessage((_, name) => $"Username {name} wird bereits verwendet");
+            .MinimumLength(6);
 
         RuleFor(user => user.Password).Cascade(CascadeMode.Stop)
             .NotEmpty()

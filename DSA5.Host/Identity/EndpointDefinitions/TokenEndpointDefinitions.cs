@@ -8,7 +8,7 @@ public sealed class TokenEndpointDefinitions : IEndpointDefinition
 {
     public void RegisterEndpoints(WebApplication app)
     {
-        var users = app.MapGroup("Auth"); 
+        var users = app.MapGroup("Auth");
         users.MapPost("/", Login)
             .WithName(nameof(Login));
     }
