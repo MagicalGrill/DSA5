@@ -1,5 +1,5 @@
-﻿using DSA5.Application.Editor.BaseEntities.Rassen.Commands;
-using DSA5.Application.Editor.BaseEntities.Rassen.Queries;
+﻿using DSA5.Application.Editor.Rassen.Commands;
+using DSA5.Application.Editor.Rassen.Queries;
 using DSA5.Entities.Welt;
 using DSA5.Host.Abstractions;
 using DSA5.Host.Editor.Filters;
@@ -11,67 +11,60 @@ public class SpeziesEndpointDefinition : IEndpointDefinition
 {
     public void RegisterEndpoints(WebApplication app)
     {
-        var spezies = app.MapGroup("/editor/spezies");
-        
-        spezies.MapGet("/", GetAllSpezies)
-            .WithName(nameof(GetAllSpezies));
+        var mapGroup = app.MapGroup("/editor/spezies");
 
-        spezies.MapGet("/{id:guid}", GetSpeziesById)
+        mapGroup.MapGet("/", GetSpezies)
+            .WithName(nameof(GetSpezies));
+
+        mapGroup.MapGet("/{id:guid}", GetSpeziesById)
             .WithName(nameof(GetSpeziesById));
 
-        spezies.MapPost("/", CreateSpezies)
+        mapGroup.MapPost("/", CreateSpezies)
             .WithName(nameof(CreateSpezies))
             .AddEndpointFilter<SpeziesValidationFilter>();
 
-        spezies.MapPut("/{id:guid}", UpdateSpezies)
+        mapGroup.MapPut("/{id:guid}", UpdateSpezies)
             .WithName(nameof(UpdateSpezies))
             .AddEndpointFilter<SpeziesValidationFilter>();
 
-        spezies.MapDelete("/{id:guid}", DeleteSpezies)
+        mapGroup.MapDelete("/{id:guid}", DeleteSpezies)
             .WithName(nameof(DeleteSpezies));
     }
 
-    private async Task<IResult> GetAllSpezies(IMediator mediator)
+    private async Task<IResult> GetSpezies(IMediator mediator)
     {
-        var getAllSpezies = new GetAllSpezies();
-        var spezies = await mediator.Send(getAllSpezies);
-        return TypedResults.Ok(spezies);
+        var request = new GetSpeziesRequest();
+        var result = await mediator.Send(request);
+        return TypedResults.Ok(result);
     }
 
     private async Task<IResult> GetSpeziesById(IMediator mediator, Guid id)
     {
-        var getSpezies = new GetSpeziesById { Id = id };
-        var spezies = await mediator.Send(getSpezies);
-        return TypedResults.Ok(spezies);
+        var request = new GetSpeziesByIdRequest(id);
+        var result = await mediator.Send(request);
+        return result is null
+            ? TypedResults.NotFound()
+            : TypedResults.Ok(result);
     }
 
     private async Task<IResult> CreateSpezies(IMediator mediator, Spezies spezies)
     {
-        var createSpezies = new CreateSpezies
-        {
-            ApKosten = spezies.ApKosten,
-            Beschreibung = spezies.Beschreibung,
-            Geschwindigkeit = spezies.Geschwindigkeit,
-            Lebenspunkte = spezies.Lebenspunkte,
-            Name = spezies.Name,
-            Seelenkraft = spezies.Seelenkraft,
-            Zaehigkeit = spezies.Zaehigkeit
-        };
-        var createdSpezies = await mediator.Send(createSpezies);
-        return Results.CreatedAtRoute(nameof(GetSpeziesById), new { createdSpezies.Id }, createdSpezies);
+        var request = new CreateSpeziesRequest(spezies);
+        var result = await mediator.Send(request);
+        return Results.CreatedAtRoute(nameof(GetSpeziesById), new { result.Id }, result);
     }
 
     private async Task<IResult> UpdateSpezies(IMediator mediator, Spezies spezies, Guid id)
     {
-        var updateSpezies = new UpdateSpezies { Id = id, UpdatedSpezies = spezies };
-        var guid = await mediator.Send(updateSpezies);
-        return TypedResults.Ok(guid);
+        var request = new UpdateSpeziesRequest(id, spezies);
+        await mediator.Send(request);
+        return TypedResults.Ok();
     }
 
     private async Task<IResult> DeleteSpezies(IMediator mediator, Guid id)
     {
-        var deleteSpezies = new DeleteSpezies { Id = id };
-        await mediator.Send(deleteSpezies);
+        var request = new DeleteSpeziesRequest(id);
+        await mediator.Send(request);
         return TypedResults.NoContent();
     }
 }
