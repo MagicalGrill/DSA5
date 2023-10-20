@@ -5,7 +5,7 @@ using DSA5.Entities.Welt;
 namespace DSA5.Entities.Meta.Korrelationen;
 
 [Table(nameof(TraditionEmpfiehltSonderfertigkeit))]
-public class TraditionEmpfiehltSonderfertigkeit : BaseEntity
+public sealed class TraditionEmpfiehltSonderfertigkeit : BaseEntity
 {
     [ForeignKey(nameof(Tradition))]
     public Guid TraditionId { get; set; }

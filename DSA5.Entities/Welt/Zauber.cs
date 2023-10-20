@@ -1,7 +1,9 @@
-﻿using DSA5.Entities.Meta.Korrelationen;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using DSA5.Entities.Meta.Korrelationen;
 
 namespace DSA5.Entities.Welt;
 
+[Table(nameof(Zauber))]
 public class Zauber : Talent
 {
     public bool ModifiziertDurchSeelenkraft { get; set; }

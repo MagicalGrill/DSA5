@@ -5,7 +5,7 @@ using DSA5.Entities.Welt;
 namespace DSA5.Entities.Meta.Korrelationen;
 
 [Table(nameof(ProfessionEmpfiehltSonderfertigkeit))]
-public class ProfessionEmpfiehltSonderfertigkeit : BaseEntity
+public sealed class ProfessionEmpfiehltSonderfertigkeit : BaseEntity
 {
     [ForeignKey(nameof(Profession))]
     public Guid ProfessionId { get; set; }

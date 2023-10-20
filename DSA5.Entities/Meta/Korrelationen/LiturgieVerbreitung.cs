@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using DSA5.Entities.Common.Contracts;
+using DSA5.Entities.Welt;
 
 namespace DSA5.Entities.Meta.Korrelationen;
 
-[Table("LiturgieVerbreitung")]
-public class LiturgieVerbreitung : BaseEntity
+[Table(nameof(LiturgieVerbreitung))]
+public sealed class LiturgieVerbreitung : BaseEntity
 {
-    [ForeignKey("Liturgie")]
+    [ForeignKey(nameof(Liturgie))]
     public Guid ZauberId { get; set; }
-    [ForeignKey("Tradition")]
+    [ForeignKey(nameof(Tradition))]
     public Guid TraditionId { get; set; }
 }

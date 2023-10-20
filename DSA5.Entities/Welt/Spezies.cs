@@ -14,7 +14,7 @@ public class Spezies : DescriptedEntity
     public int Geschwindigkeit { get; set; }
     public int ApKosten { get; set; }
 
-    public virtual IEnumerable<SpeziesBedingtEigenschaft> EigenschaftModifikatoren { get; set; } = null!;
+    public virtual IEnumerable<SpeziesBedingtEigenschaften> EigenschaftModifikatoren { get; set; } = null!;
     
     public virtual IEnumerable<SpeziesEmpfiehltKultur> EmpfohleneKulturen { get; set; } = null!;
     public virtual IEnumerable<SpeziesEmpfiehltVorteil> EmpfohleneVorteile { get; set; } = null!;

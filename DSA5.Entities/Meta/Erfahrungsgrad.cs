@@ -3,8 +3,8 @@ using DSA5.Entities.Common.Contracts;
 
 namespace DSA5.Entities.Meta;
 
-[Table("Erfahrungsgrad")]
-public class Erfahrungsgrad : DescriptedEntity
+[Table(nameof(Erfahrungsgrad))]
+public sealed class Erfahrungsgrad : DescriptedEntity
 {
     public int ApGuthaben { get; set; }
     public int MaxEigenschaftWert { get; set; }

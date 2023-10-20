@@ -5,7 +5,7 @@ using DSA5.Entities.Welt;
 namespace DSA5.Entities.Meta.Korrelationen;
 
 [Table(nameof(NachteilEmpfiehltNachteil))]
-public class NachteilEmpfiehltNachteil : BaseEntity
+public sealed class NachteilEmpfiehltNachteil : BaseEntity
 {
     [ForeignKey(nameof(Nachteil))]
     public Guid NachteilId { get; set; }

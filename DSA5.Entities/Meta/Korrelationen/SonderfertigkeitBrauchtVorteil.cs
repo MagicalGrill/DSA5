@@ -5,7 +5,7 @@ using DSA5.Entities.Welt;
 namespace DSA5.Entities.Meta.Korrelationen;
 
 [Table(nameof(SonderfertigkeitBrauchtVorteil))]
-public class SonderfertigkeitBrauchtVorteil : BaseEntity
+public sealed class SonderfertigkeitBrauchtVorteil : BaseEntity
 {
     [ForeignKey(nameof(Sonderfertigkeit))]
     public Guid SonderfertigkeitId { get; set; }

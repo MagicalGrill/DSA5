@@ -5,7 +5,7 @@ using DSA5.Entities.Welt;
 namespace DSA5.Entities.Meta.Korrelationen;
 
 [Table(nameof(KulturEmpfiehltNachteil))]
-public class KulturEmpfiehltNachteil : BaseEntity
+public sealed class KulturEmpfiehltNachteil : BaseEntity
 {
     [ForeignKey(nameof(Kultur))]
     public Guid KulturId { get; set; }

@@ -4,11 +4,12 @@ using DSA5.Entities.Welt;
 
 namespace DSA5.Entities.Meta.Korrelationen;
 
-[Table(nameof(SonderfertigkeitBrauchtSpezies))]
-public sealed class SonderfertigkeitBrauchtSpezies : BaseEntity
+[Table(nameof(SonderfertigkeitBrauchtAspekt))]
+public sealed class SonderfertigkeitBrauchtAspekt : BaseEntity
 {
     [ForeignKey(nameof(Sonderfertigkeit))]
     public Guid SonderfertigkeitId { get; set; }
-    [ForeignKey(nameof(Spezies))]
-    public Guid SpeziesId { get; set; }
+    public int GesamtStufe { get; set; }
+    public int StufeProLiturgie { get; set; }
+    public int AnzahlLiturgien { get; set; }
 }

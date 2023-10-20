@@ -3,17 +3,13 @@ using DSA5.Entities.Common.Contracts;
 
 namespace DSA5.Entities.Welt.Modifikatoren;
 
-[Table("SonderfertigkeitBedingtNachteil")]
-public class SonderfertigkeitBedingtNachteil : BaseEntity, INachteilModifikator
+[Table(nameof(SonderfertigkeitBedingtNachteil))]
+public class SonderfertigkeitBedingtNachteil : BaseEntity
 {
-    [ForeignKey("Sonderfertigkeit")]
+    [ForeignKey(nameof(Sonderfertigkeit))]
     public Guid SonderfertigkeitId { get; set; }
     
-    [ForeignKey("Nachteil")]
+    [ForeignKey(nameof(Welt.Nachteil))]
     public Guid NachteilId { get; set; }
     public Nachteil Nachteil { get; set; } = null!;
-    
-    public int Stufe { get; set; }
-    public Eigenschaft? Eigenschaft { get; set; }
-    public Talent? Talent { get; set; }
 }
