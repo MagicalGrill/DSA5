@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA5.Host", "DSA5.Host\DSA5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA5.Shared", "DSA5.Shared\DSA5.Shared.csproj", "{0929BB77-C53E-470D-927A-5B669A1A0F3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA5.Migrators.PostgreSQL", "DSA5.Migrators.PostgreSQL\DSA5.Migrators.PostgreSQL.csproj", "{78A5B5F0-6D44-408E-9582-A176786C1092}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,9 +36,5 @@ Global
 		{0929BB77-C53E-470D-927A-5B669A1A0F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0929BB77-C53E-470D-927A-5B669A1A0F3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0929BB77-C53E-470D-927A-5B669A1A0F3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{78A5B5F0-6D44-408E-9582-A176786C1092}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78A5B5F0-6D44-408E-9582-A176786C1092}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78A5B5F0-6D44-408E-9582-A176786C1092}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78A5B5F0-6D44-408E-9582-A176786C1092}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
