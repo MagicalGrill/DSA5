@@ -17,10 +17,10 @@ internal static class Startup
             .BindConfiguration(nameof(DatabaseSettings));
 
         return services.AddDbContext<DsaDbContext>((provider, optionsBuilder) =>
-        {
-            var databaseSettings = provider.GetRequiredService<IOptions<DatabaseSettings>>().Value;
-            optionsBuilder.UseInMemoryDatabase(databaseName: "DsaDb");
-        })
+            {
+                var databaseSettings = provider.GetRequiredService<IOptions<DatabaseSettings>>().Value;
+                optionsBuilder.UseDatabase(databaseSettings.ConnectionString);
+            })
             .AddTransient<IDatabaseInitializer, DatabaseInitializer>()
             .AddTransient<DsaDbInitializer>()
             .AddTransient<DsaDbSeeder>()

@@ -16,6 +16,7 @@ public sealed class UpdateEigenschaftHandler : IRequestHandler<UpdateEigenschaft
 
     public async Task Handle(UpdateEigenschaftRequest request, CancellationToken cancellationToken)
     {
+        request.Eigenschaft.Id = request.Id;
         await _repository.UpdateAsync(request.Eigenschaft, cancellationToken);
     }
 }

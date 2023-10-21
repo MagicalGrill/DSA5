@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\DSA5.Application\DSA5.Application.csproj"/>
+        <ProjectReference Include="..\DSA5.Entities\DSA5.Entities.csproj"/>
+        <ProjectReference Include="..\DSA5.Infrastructure\DSA5.Infrastructure.csproj"/>
+        <ProjectReference Include="..\DSA5.Shared\DSA5.Shared.csproj"/>
+    </ItemGroup>
+
+</Project>

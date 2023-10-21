@@ -3,6 +3,7 @@ using DSA5.Application.Editor.Eigenschaften.Queries;
 using DSA5.Entities.Welt;
 using DSA5.Host.Abstractions;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DSA5.Host.Editor.EndpointDefinitions;
 
@@ -44,11 +45,11 @@ public sealed class EigenschaftEndpointDefinition : IEndpointDefinition
             : TypedResults.Ok(result);
     }
 
-    private async Task<IResult> CreateEigenschaft(ISender mediator, Eigenschaft eigenschaft)
+    private async Task<IResult> CreateEigenschaft(IMediator mediator, [FromBody] Eigenschaft eigenschaft)
     {
         var request = new CreateEigenschaftRequest(eigenschaft);
         var result = await mediator.Send(request);
-        return Results.CreatedAtRoute(nameof(GetEigenschaftById), new { result.Id }, result);
+        return TypedResults.Ok(result);
     }
 
     private async Task<IResult> UpdateEigenschaft(IMediator mediator, Eigenschaft eigenschaft, Guid id)

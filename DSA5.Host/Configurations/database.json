@@ -1,0 +1,6 @@
+{
+  "DatabaseSettings": {
+    "DbProvider": "postgresql",
+    "ConnectionString": "Host=localhost;Port=5432;Database=dsa5;Username=postgres;Password=Rub!nR0t;Include Error Detail=true"
+  }
+}
