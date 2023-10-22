@@ -98,4 +98,16 @@ public class DsaDbContext : IdentityDbContext
             connectionString);
         base.OnConfiguring(builder);
     }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<Talent>()
+            .HasDiscriminator<string>("TalentArt")
+            .HasValue<Talent>("Talent")
+            .HasValue<Zauber>("Zauber")
+            .HasValue<Liturgie>("Liturgie")
+            .HasValue<Fluch>("Fluch");
+
+        base.OnModelCreating(builder);
+    }
 }

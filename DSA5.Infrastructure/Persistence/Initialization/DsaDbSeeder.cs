@@ -43,23 +43,11 @@ internal class DsaDbSeeder
             UserName = "Admin",
             Email = "sith@admin.com"
         };
-        
+
         if (await _userManager.FindByNameAsync(admin.UserName) is null)
         {
             await _userManager.CreateAsync(admin, password);
         }
-
-        var guardian = new DsaUser()
-        {
-            UserName = "Guardian",
-            Email = "guardian@galaxy.com"
-        };
-        
-        if(await _userManager.FindByNameAsync(guardian.UserName) is null)
-        {
-            await _userManager.CreateAsync(guardian, password);
-        }
-
     }
 
     private async Task AssignRolesAsync()
@@ -71,13 +59,5 @@ internal class DsaDbSeeder
         }
 
         await _userManager.AddToRolesAsync(admin, DsaRoles.DefaultRoles);
-
-        var guardian = await _userManager.FindByNameAsync("Guardian");
-        if (guardian is null)
-        {
-            return;
-        }
-
-        await _userManager.AddToRolesAsync(guardian, new[] { DsaRoles.Guardian, DsaRoles.Basic });
     }
 }

@@ -1,11 +1,11 @@
 using DSA5.Host.Configurations;
 using DSA5.Host.Extensions;
 using DSA5.Infrastructure;
-using DSA5.Infrastructure.Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddConfigurations();
 builder.RegisterServices();
+// builder.Services.AddTransient<IRequestHandler<BaseGetAllRequest<Eigenschaft>, ICollection<Eigenschaft>>, BaseGetAllHandler<Eigenschaft>>();
 
 // Temporary Swagger
 builder.Services.AddEndpointsApiExplorer();

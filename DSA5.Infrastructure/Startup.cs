@@ -18,6 +18,7 @@ public static class Startup
             .AddAuth(config)
             .AddCorsPolicy(config)
             .AddMediatR(configuration => configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()))
+            .AddGenericMediatorServices()
             .AddPersistence()
             .AddServices();
     }
@@ -29,6 +30,7 @@ public static class Startup
         await scope.ServiceProvider.GetRequiredService<IDatabaseInitializer>()
             .InitializeDatabaseAsync(cancellationToken);
     }
+
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder builder, IConfiguration config) =>
         builder
             .UseCorsPolicy()
