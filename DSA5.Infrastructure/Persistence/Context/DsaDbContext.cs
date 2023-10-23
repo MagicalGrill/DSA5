@@ -15,6 +15,7 @@ public class DsaDbContext : IdentityDbContext
     public DbSet<Aspekt> Aspekte { get; set; } = null!;
     public DbSet<Eigenschaft> Eigenschaften { get; set; } = null!;
     public DbSet<Fluch> Flueche { get; set; } = null!;
+    public DbSet<Geweihtentradition> Geweihtentraditionen { get; set; } = null!;
     public DbSet<Kampftechnik> Kampftechniken { get; set; } = null!;
     public DbSet<Kultur> Kulturen { get; set; } = null!;
     public DbSet<Kulturgruppe> Kulturgruppen { get; set; } = null!;
@@ -30,7 +31,7 @@ public class DsaDbContext : IdentityDbContext
     public DbSet<Stabzauber> Stabzauber { get; set; } = null!;
     public DbSet<Talent> Talente { get; set; } = null!;
     public DbSet<Talentgruppe> Talentgruppen { get; set; } = null!;
-    public DbSet<Tradition> Traditionen { get; set; } = null!;
+    public DbSet<Zaubertradition> Zaubertraditionen { get; set; } = null!;
     public DbSet<Vorteil> Vorteile { get; set; } = null!;
     public DbSet<Zauber> Zauber { get; set; } = null!;
     public DbSet<Zaubertrick> Zaubertricks { get; set; } = null!;
@@ -108,6 +109,18 @@ public class DsaDbContext : IdentityDbContext
             .HasValue<Liturgie>("Liturgie")
             .HasValue<Fluch>("Fluch");
 
+        builder.Entity<Tradition>()
+            .HasDiscriminator<string>("TraditionArt")
+            .HasValue<Zaubertradition>("Zauber")
+            .HasValue<Geweihtentradition>("Geweiht");
+
+        SetNavigationalProperties(builder);
+
         base.OnModelCreating(builder);
+    }
+
+    private void SetNavigationalProperties(ModelBuilder builder)
+    {
+        builder.Entity<Tradition>().Navigation(t => t.Leiteigenschaft).AutoInclude();
     }
 }

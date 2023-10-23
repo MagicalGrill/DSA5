@@ -3,6 +3,7 @@ using System;
 using DSA5.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DSA5.Infrastructure.Migrations
 {
     [DbContext(typeof(DsaDbContext))]
-    partial class DsaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231022131950_splitTraditions")]
+    partial class splitTraditions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -822,9 +825,6 @@ namespace DSA5.Infrastructure.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("GeweihtentraditionId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("timestamp with time zone");
 
@@ -833,8 +833,6 @@ namespace DSA5.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GeweihtentraditionId");
 
                     b.ToTable("Aspekt");
                 });
@@ -1988,15 +1986,6 @@ namespace DSA5.Infrastructure.Migrations
                         .HasForeignKey("ZauberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("DSA5.Entities.Welt.Aspekt", b =>
-                {
-                    b.HasOne("DSA5.Entities.Welt.Geweihtentradition", "Geweihtentradition")
-                        .WithMany()
-                        .HasForeignKey("GeweihtentraditionId");
-
-                    b.Navigation("Geweihtentradition");
                 });
 
             modelBuilder.Entity("DSA5.Entities.Welt.Kampftechnik", b =>
