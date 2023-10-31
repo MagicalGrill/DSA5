@@ -1,5 +1,8 @@
-﻿namespace DSA5.Entities.Welt;
+﻿using DSA5.Entities.Meta.Korrelationen;
 
-public sealed class Geweihtentradition : Tradition
+namespace DSA5.Entities.Welt;
+
+public class Geweihtentradition : Tradition
 {
+    public virtual IEnumerable<TraditionEmpfiehltAspekt> ErmoeglichteAspekte { get; set; } = null!;
 }

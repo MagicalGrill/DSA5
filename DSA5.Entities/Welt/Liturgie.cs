@@ -2,7 +2,7 @@
 
 namespace DSA5.Entities.Welt;
 
-public class Liturgie : Talent
+public class Liturgie : Fertigkeit
 {
     public virtual IEnumerable<LiturgieVerbreitung> Verbreitung { get; set; } = null!;
 }

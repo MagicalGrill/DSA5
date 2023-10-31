@@ -5,19 +5,19 @@ using MediatR;
 
 namespace DSA5.Application.Editor.Base.Handlers;
 
-public sealed class BaseUpdateHandler<T> : IRequestHandler<BaseUpdateRequest<T>> where T : BaseEntity
+public class BaseUpdateHandler<T> : IRequestHandler<BaseUpdateRequest<T>> where T : BaseEntity
 {
-    private readonly IRepository<T> _repository;
+    protected readonly IRepository<T> Repository;
 
     public BaseUpdateHandler(IRepository<T> repository)
     {
-        _repository = repository;
+        Repository = repository;
     }
 
-    public async Task Handle(BaseUpdateRequest<T> request, CancellationToken cancellationToken)
+    public virtual async Task Handle(BaseUpdateRequest<T> request, CancellationToken cancellationToken)
     {
         request.Item.LastUpdated = DateTime.UtcNow;
         request.Item.Id = request.Id;
-        await _repository.UpdateAsync(request.Item, cancellationToken);
+        await Repository.UpdateAsync(request.Item, cancellationToken);
     }
 }

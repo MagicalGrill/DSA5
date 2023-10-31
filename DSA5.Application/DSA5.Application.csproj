@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DSA5.Entities\DSA5.Entities.csproj" />
+        <ProjectReference Include="..\DSA5.Shared\DSA5.Shared.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

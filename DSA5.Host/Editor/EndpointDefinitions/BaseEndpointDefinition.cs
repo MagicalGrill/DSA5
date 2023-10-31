@@ -22,14 +22,14 @@ public abstract class BaseEndpointDefinition<T> : IEndpointDefinition where T : 
         mapGroup.MapDelete("/{id:guid}", Delete);
     }
 
-    private async Task<IResult> GetAll(IMediator mediator)
+    protected virtual async Task<IResult> GetAll(IMediator mediator)
     {
         var request = new BaseGetAllRequest<T>();
         var result = await mediator.Send(request);
         return TypedResults.Ok(result);
     }
 
-    private async Task<IResult> GetById(IMediator mediator, Guid id)
+    protected virtual async Task<IResult> GetById(IMediator mediator, Guid id)
     {
         var request = new BaseGetByIdRequest<T>(id);
         var result = await mediator.Send(request);
@@ -38,14 +38,14 @@ public abstract class BaseEndpointDefinition<T> : IEndpointDefinition where T : 
             : TypedResults.Ok(result);
     }
 
-    private async Task<IResult> Create(IMediator mediator, [FromBody] T item)
+    protected virtual async Task<IResult> Create(IMediator mediator, [FromBody] T item)
     {
         var request = new BaseCreateRequest<T>(item);
         var result = await mediator.Send(request);
         return TypedResults.Ok(result);
     }
 
-    private async Task<IResult> Update(IMediator mediator, T item, Guid id)
+    protected virtual async Task<IResult> Update(IMediator mediator, T item, Guid id)
     {
         var request = new BaseUpdateRequest<T>(id, item);
         await mediator.Send(request);

@@ -2,5 +2,4 @@
 
 public sealed class SonderfertigkeitMitZusatz : Sonderfertigkeit
 {
-    public string Zusatzinformation { get; set; } = null!;
 }

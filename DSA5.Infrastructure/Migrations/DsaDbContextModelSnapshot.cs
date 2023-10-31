@@ -655,6 +655,36 @@ namespace DSA5.Infrastructure.Migrations
                     b.ToTable("SpeziesEmpfiehltVorteil");
                 });
 
+            modelBuilder.Entity("DSA5.Entities.Meta.Korrelationen.TraditionEmpfiehltAspekt", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AspektId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Empfehlungsstufe")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("GeweihtentraditionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AspektId");
+
+                    b.HasIndex("GeweihtentraditionId");
+
+                    b.ToTable("TraditionEmpfiehltAspekt");
+                });
+
             modelBuilder.Entity("DSA5.Entities.Meta.Korrelationen.TraditionEmpfiehltSonderfertigkeit", b =>
                 {
                     b.Property<Guid>("Id")
@@ -822,9 +852,6 @@ namespace DSA5.Infrastructure.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid?>("GeweihtentraditionId")
-                        .HasColumnType("uuid");
-
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("timestamp with time zone");
 
@@ -833,8 +860,6 @@ namespace DSA5.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GeweihtentraditionId");
 
                     b.ToTable("Aspekt");
                 });
@@ -865,6 +890,56 @@ namespace DSA5.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Eigenschaft");
+                });
+
+            modelBuilder.Entity("DSA5.Entities.Welt.Fertigkeit", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Beschreibung")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("SteigerungsfaktorId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("TalentArt")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("Wurf1Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("Wurf2Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("Wurf3Id")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Wurf1Id");
+
+                    b.HasIndex("Wurf2Id");
+
+                    b.HasIndex("Wurf3Id");
+
+                    b.ToTable("Fertigkeit");
+
+                    b.HasDiscriminator<string>("TalentArt").HasValue("Fertigkeit");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("DSA5.Entities.Welt.Kampftechnik", b =>
@@ -1212,66 +1287,6 @@ namespace DSA5.Infrastructure.Migrations
                     b.ToTable("Spezies");
                 });
 
-            modelBuilder.Entity("DSA5.Entities.Welt.Talent", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("BeeinflusstDurchBelastung")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Beschreibung")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("LastUpdated")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("SteigerungsfaktorId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("TalentArt")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("TalentgruppeId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("Wurf1Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("Wurf2Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("Wurf3Id")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SteigerungsfaktorId");
-
-                    b.HasIndex("TalentgruppeId");
-
-                    b.HasIndex("Wurf1Id");
-
-                    b.HasIndex("Wurf2Id");
-
-                    b.HasIndex("Wurf3Id");
-
-                    b.ToTable("Talent");
-
-                    b.HasDiscriminator<string>("TalentArt").HasValue("Talent");
-
-                    b.UseTphMappingStrategy();
-                });
-
             modelBuilder.Entity("DSA5.Entities.Welt.Talentgruppe", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1596,6 +1611,53 @@ namespace DSA5.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("DSA5.Entities.Welt.Liturgie", b =>
+                {
+                    b.HasBaseType("DSA5.Entities.Welt.Fertigkeit");
+
+                    b.HasIndex("SteigerungsfaktorId");
+
+                    b.ToTable("Fertigkeit");
+
+                    b.HasDiscriminator().HasValue("Liturgie");
+                });
+
+            modelBuilder.Entity("DSA5.Entities.Welt.Talent", b =>
+                {
+                    b.HasBaseType("DSA5.Entities.Welt.Fertigkeit");
+
+                    b.Property<int>("BeeinflusstDurchBelastung")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("TalentgruppeId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("SteigerungsfaktorId");
+
+                    b.HasIndex("TalentgruppeId");
+
+                    b.ToTable("Fertigkeit");
+
+                    b.HasDiscriminator().HasValue("Talent");
+                });
+
+            modelBuilder.Entity("DSA5.Entities.Welt.Zauber", b =>
+                {
+                    b.HasBaseType("DSA5.Entities.Welt.Fertigkeit");
+
+                    b.Property<bool>("ModifiziertDurchSeelenkraft")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("ModifiziertDurchZaehigkeit")
+                        .HasColumnType("boolean");
+
+                    b.HasIndex("SteigerungsfaktorId");
+
+                    b.ToTable("Fertigkeit");
+
+                    b.HasDiscriminator().HasValue("Zauber");
+                });
+
             modelBuilder.Entity("DSA5.Entities.Welt.Schrift", b =>
                 {
                     b.HasBaseType("DSA5.Entities.Welt.Sonderfertigkeit");
@@ -1612,6 +1674,8 @@ namespace DSA5.Infrastructure.Migrations
 
                     b.Property<int>("KarmalKosten")
                         .HasColumnType("integer");
+
+                    b.HasIndex("AspektId");
 
                     b.ToTable("Segnung");
                 });
@@ -1644,30 +1708,6 @@ namespace DSA5.Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.ToTable("Zaubertrick");
-                });
-
-            modelBuilder.Entity("DSA5.Entities.Welt.Liturgie", b =>
-                {
-                    b.HasBaseType("DSA5.Entities.Welt.Talent");
-
-                    b.ToTable("Talent");
-
-                    b.HasDiscriminator().HasValue("Liturgie");
-                });
-
-            modelBuilder.Entity("DSA5.Entities.Welt.Zauber", b =>
-                {
-                    b.HasBaseType("DSA5.Entities.Welt.Talent");
-
-                    b.Property<bool>("ModifiziertDurchSeelenkraft")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("ModifiziertDurchZaehigkeit")
-                        .HasColumnType("boolean");
-
-                    b.ToTable("Talent");
-
-                    b.HasDiscriminator().HasValue("Zauber");
                 });
 
             modelBuilder.Entity("DSA5.Entities.Welt.Geweihtentradition", b =>
@@ -1718,7 +1758,7 @@ namespace DSA5.Infrastructure.Migrations
                 {
                     b.HasBaseType("DSA5.Entities.Welt.Zauber");
 
-                    b.ToTable("Talent");
+                    b.ToTable("Fertigkeit");
 
                     b.HasDiscriminator().HasValue("Fluch");
                 });
@@ -1959,6 +1999,23 @@ namespace DSA5.Infrastructure.Migrations
                     b.Navigation("Vorteil");
                 });
 
+            modelBuilder.Entity("DSA5.Entities.Meta.Korrelationen.TraditionEmpfiehltAspekt", b =>
+                {
+                    b.HasOne("DSA5.Entities.Welt.Aspekt", "Aspekt")
+                        .WithMany()
+                        .HasForeignKey("AspektId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DSA5.Entities.Welt.Geweihtentradition", null)
+                        .WithMany("ErmoeglichteAspekte")
+                        .HasForeignKey("GeweihtentraditionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Aspekt");
+                });
+
             modelBuilder.Entity("DSA5.Entities.Meta.Korrelationen.VorteilBrauchtVorteil", b =>
                 {
                     b.HasOne("DSA5.Entities.Welt.Vorteil", "Ziel")
@@ -1990,13 +2047,31 @@ namespace DSA5.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DSA5.Entities.Welt.Aspekt", b =>
+            modelBuilder.Entity("DSA5.Entities.Welt.Fertigkeit", b =>
                 {
-                    b.HasOne("DSA5.Entities.Welt.Geweihtentradition", "Geweihtentradition")
+                    b.HasOne("DSA5.Entities.Welt.Eigenschaft", "Wurf1")
                         .WithMany()
-                        .HasForeignKey("GeweihtentraditionId");
+                        .HasForeignKey("Wurf1Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Geweihtentradition");
+                    b.HasOne("DSA5.Entities.Welt.Eigenschaft", "Wurf2")
+                        .WithMany()
+                        .HasForeignKey("Wurf2Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DSA5.Entities.Welt.Eigenschaft", "Wurf3")
+                        .WithMany()
+                        .HasForeignKey("Wurf3Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Wurf1");
+
+                    b.Navigation("Wurf2");
+
+                    b.Navigation("Wurf3");
                 });
 
             modelBuilder.Entity("DSA5.Entities.Welt.Kampftechnik", b =>
@@ -2063,49 +2138,6 @@ namespace DSA5.Infrastructure.Migrations
                         .HasForeignKey("SpeziesBedingtEigenschaftenId");
 
                     b.Navigation("Eigenschaft");
-                });
-
-            modelBuilder.Entity("DSA5.Entities.Welt.Talent", b =>
-                {
-                    b.HasOne("DSA5.Entities.Meta.Steigerungsfaktor", "Steigerungsfaktor")
-                        .WithMany()
-                        .HasForeignKey("SteigerungsfaktorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DSA5.Entities.Welt.Talentgruppe", "Talentgruppe")
-                        .WithMany()
-                        .HasForeignKey("TalentgruppeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DSA5.Entities.Welt.Eigenschaft", "Wurf1")
-                        .WithMany()
-                        .HasForeignKey("Wurf1Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DSA5.Entities.Welt.Eigenschaft", "Wurf2")
-                        .WithMany()
-                        .HasForeignKey("Wurf2Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DSA5.Entities.Welt.Eigenschaft", "Wurf3")
-                        .WithMany()
-                        .HasForeignKey("Wurf3Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Steigerungsfaktor");
-
-                    b.Navigation("Talentgruppe");
-
-                    b.Navigation("Wurf1");
-
-                    b.Navigation("Wurf2");
-
-                    b.Navigation("Wurf3");
                 });
 
             modelBuilder.Entity("DSA5.Entities.Welt.Talentgruppe", b =>
@@ -2197,6 +2229,47 @@ namespace DSA5.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("DSA5.Entities.Welt.Liturgie", b =>
+                {
+                    b.HasOne("DSA5.Entities.Meta.Steigerungsfaktor", "Steigerungsfaktor")
+                        .WithMany()
+                        .HasForeignKey("SteigerungsfaktorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Steigerungsfaktor");
+                });
+
+            modelBuilder.Entity("DSA5.Entities.Welt.Talent", b =>
+                {
+                    b.HasOne("DSA5.Entities.Meta.Steigerungsfaktor", "Steigerungsfaktor")
+                        .WithMany()
+                        .HasForeignKey("SteigerungsfaktorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DSA5.Entities.Welt.Talentgruppe", "Talentgruppe")
+                        .WithMany()
+                        .HasForeignKey("TalentgruppeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Steigerungsfaktor");
+
+                    b.Navigation("Talentgruppe");
+                });
+
+            modelBuilder.Entity("DSA5.Entities.Welt.Zauber", b =>
+                {
+                    b.HasOne("DSA5.Entities.Meta.Steigerungsfaktor", "Steigerungsfaktor")
+                        .WithMany()
+                        .HasForeignKey("SteigerungsfaktorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Steigerungsfaktor");
+                });
+
             modelBuilder.Entity("DSA5.Entities.Welt.Schrift", b =>
                 {
                     b.HasOne("DSA5.Entities.Welt.Sonderfertigkeit", null)
@@ -2208,11 +2281,19 @@ namespace DSA5.Infrastructure.Migrations
 
             modelBuilder.Entity("DSA5.Entities.Welt.Segnung", b =>
                 {
+                    b.HasOne("DSA5.Entities.Welt.Aspekt", "Aspekt")
+                        .WithMany()
+                        .HasForeignKey("AspektId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DSA5.Entities.Welt.Sonderfertigkeit", null)
                         .WithOne()
                         .HasForeignKey("DSA5.Entities.Welt.Segnung", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Aspekt");
                 });
 
             modelBuilder.Entity("DSA5.Entities.Welt.Sprache", b =>
@@ -2300,6 +2381,11 @@ namespace DSA5.Infrastructure.Migrations
             modelBuilder.Entity("DSA5.Entities.Welt.Zauber", b =>
                 {
                     b.Navigation("Verbreitung");
+                });
+
+            modelBuilder.Entity("DSA5.Entities.Welt.Geweihtentradition", b =>
+                {
+                    b.Navigation("ErmoeglichteAspekte");
                 });
 #pragma warning restore 612, 618
         }

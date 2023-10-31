@@ -3,6 +3,7 @@ using DSA5.Entities.Meta.Korrelationen;
 using DSA5.Entities.Welt;
 using DSA5.Entities.Welt.Modifikatoren;
 using DSA5.Infrastructure.Identity;
+using DSA5.Infrastructure.Persistence.Context.ValueConverters;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,6 +46,7 @@ public class DsaDbContext : IdentityDbContext
     public DbSet<SpeziesKannEigenschaftBedingen> MoeglicheEigenschaftenDurchSpezies { get; set; } = null!;
 
     // Korrelationen
+    public DbSet<TraditionEmpfiehltAspekt> AspektGehoertZuTratitionen { get; set; } = null!;
     public DbSet<KulturEmpfiehltNachteil> KulturEmpfiehltNachteile { get; set; } = null!;
     public DbSet<KulturEmpfiehltTalent> KulturEmpfiehltTalente { get; set; } = null!;
     public DbSet<KulturEmpfiehltVorteil> KulturEmpfiehltVorteile { get; set; } = null!;
@@ -100,9 +102,16 @@ public class DsaDbContext : IdentityDbContext
         base.OnConfiguring(builder);
     }
 
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        configurationBuilder
+            .Properties<DateTime>()
+            .HaveConversion<UtcValueConverter>();
+    }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.Entity<Talent>()
+        builder.Entity<Fertigkeit>()
             .HasDiscriminator<string>("TalentArt")
             .HasValue<Talent>("Talent")
             .HasValue<Zauber>("Zauber")
@@ -119,7 +128,7 @@ public class DsaDbContext : IdentityDbContext
         base.OnModelCreating(builder);
     }
 
-    private void SetNavigationalProperties(ModelBuilder builder)
+    private static void SetNavigationalProperties(ModelBuilder builder)
     {
         builder.Entity<Tradition>().Navigation(t => t.Leiteigenschaft).AutoInclude();
     }
