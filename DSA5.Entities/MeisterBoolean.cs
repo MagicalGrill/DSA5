@@ -2,7 +2,7 @@
 
 public enum MeisterBoolean
 {
-    Ja,
-    Nein,
-    Meisterentscheid
+    Nein = 0,
+    Ja = 1,
+    Meisterentscheid = 2
 }

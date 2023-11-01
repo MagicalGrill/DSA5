@@ -11,7 +11,7 @@ public abstract class BaseEndpointDefinition<T> : IEndpointDefinition where T : 
 {
     protected abstract string Prefix { get; }
 
-    public void RegisterEndpoints(WebApplication app)
+    public virtual void RegisterEndpoints(WebApplication app)
     {
         var mapGroup = app.MapGroup(Prefix);
 
@@ -29,7 +29,7 @@ public abstract class BaseEndpointDefinition<T> : IEndpointDefinition where T : 
         return TypedResults.Ok(result);
     }
 
-    protected virtual async Task<IResult> GetById(IMediator mediator, Guid id)
+    private async Task<IResult> GetById(IMediator mediator, Guid id)
     {
         var request = new BaseGetByIdRequest<T>(id);
         var result = await mediator.Send(request);
@@ -38,14 +38,14 @@ public abstract class BaseEndpointDefinition<T> : IEndpointDefinition where T : 
             : TypedResults.Ok(result);
     }
 
-    protected virtual async Task<IResult> Create(IMediator mediator, [FromBody] T item)
+    private async Task<IResult> Create(IMediator mediator, [FromBody] T item)
     {
         var request = new BaseCreateRequest<T>(item);
         var result = await mediator.Send(request);
         return TypedResults.Ok(result);
     }
 
-    protected virtual async Task<IResult> Update(IMediator mediator, T item, Guid id)
+    private async Task<IResult> Update(IMediator mediator, T item, Guid id)
     {
         var request = new BaseUpdateRequest<T>(id, item);
         await mediator.Send(request);

@@ -19,7 +19,8 @@ public sealed class UpdateGeweihtentraditionHandler : IRequestHandler<BaseUpdate
         CancellationToken cancellationToken)
     {
         var tradition =
-            await _repository.FirstOrDefaultAsync(new FullGeweihtentraditionGetByIdSpec(request.Id), cancellationToken);
+            await _repository.FirstOrDefaultAsync(new GeweihtentraditionByIdCompleteSpec(request.Id),
+                cancellationToken);
         if (tradition is null) return;
         var item = request.Item;
         foreach (var aspekt in item.ErmoeglichteAspekte) aspekt.GeweihtentraditionId = tradition.Id;

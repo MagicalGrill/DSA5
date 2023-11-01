@@ -4,8 +4,7 @@ using DSA5.Entities.Common.Contracts;
 namespace DSA5.Entities.Welt;
 
 [Table(nameof(Anwendungsgebiet))]
-public class Anwendungsgebiet : DescriptedEntity
+public sealed class Anwendungsgebiet : NamedEntity
 {
-    [ForeignKey(nameof(Talent))]
-    public Guid TalentId { get; set; }
+    [ForeignKey(nameof(Talent))] public Guid TalentId { get; set; }
 }
