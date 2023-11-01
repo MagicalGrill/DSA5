@@ -131,5 +131,8 @@ public class DsaDbContext : IdentityDbContext
     private static void SetNavigationalProperties(ModelBuilder builder)
     {
         builder.Entity<Tradition>().Navigation(t => t.Leiteigenschaft).AutoInclude();
+        builder.Entity<Talentgruppe>().Navigation(t => t.Wurf1).AutoInclude();
+        builder.Entity<Talentgruppe>().Navigation(t => t.Wurf2).AutoInclude();
+        builder.Entity<Talentgruppe>().Navigation(t => t.Wurf3).AutoInclude();
     }
 }

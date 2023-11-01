@@ -39,17 +39,16 @@ internal static class GenericMediatorRegistration
         IEnumerable<Type> baseEntities,
         Assembly implementationAssembly,
         MethodInfo methodInfo,
-        Type HandlerType
+        Type handlerType
     )
     {
         var implementationTypes = implementationAssembly.GetTypes()
             .Where(t =>
-                !t.IsInterface
-                && !t.IsAbstract
-                && t.IsSubclassOfRawGeneric(HandlerType));
+                t is { IsInterface: false, IsAbstract: false, IsGenericType: false }
+                && t.ImplementsRequestHandlerInterface(handlerType)).ToList();
 
         foreach (var entity in baseEntities.Where(entity => implementationTypes.None(t =>
-                     t.BaseType?.GenericTypeArguments.Contains(entity) ?? false)))
+                     t.GetRequestHandlerArguments().Any(arg => arg.GetGenericArguments().Contains(entity)))))
         {
             var method = methodInfo.MakeGenericMethod(entity);
             method.Invoke(null, new object[] { services });
@@ -89,19 +88,29 @@ internal static class GenericMediatorRegistration
         return services.AddTransient<IRequestHandler<BaseGetByIdRequest<T>, T?>, BaseGetByIdHandler<T>>();
     }
 
-    private static bool IsSubclassOfRawGeneric(this Type? toCheck, Type generic)
+    private static bool ImplementsRequestHandlerInterface(this Type toCheck, Type handlerType)
     {
-        if (toCheck == generic) return false;
+        var implementedHandlerArguments =
+            toCheck.GetRequestHandlerArguments().Select(arg => arg.GetGenericTypeDefinition()).ToList();
+        if (implementedHandlerArguments.None()) return false;
+        var handlerTypeArguments =
+            handlerType.GetRequestHandlerArguments().Select(arg => arg.GetGenericTypeDefinition());
 
-        while (toCheck is not null && toCheck != typeof(object))
-        {
-            toCheck = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+        return handlerTypeArguments.All(arg => implementedHandlerArguments.Contains(arg));
+    }
 
-            if (toCheck == generic) return true;
+    private static IEnumerable<Type> GetRequestHandlerArguments(this Type type)
+    {
+        var interfaces = type.GetInterfaces().Where(i => i.IsGenericType)
+            .Where(i => i.GetGenericTypeDefinition() == typeof(IRequestHandler<>) ||
+                        i.GetGenericTypeDefinition() == typeof(IRequestHandler<,>));
+        if (interfaces.None()) return Array.Empty<Type>();
 
-            toCheck = toCheck.BaseType;
-        }
-
-        return false;
+        return interfaces.SelectMany(i =>
+            i.GetGenericArguments().Where(arg =>
+                arg.IsGenericType
+                && arg.GetInterfaces().Any(inter =>
+                    (inter.IsGenericType && inter.GetGenericTypeDefinition() == typeof(IRequest<>)) ||
+                    (!inter.IsGenericType && inter == typeof(IRequest)))));
     }
 }
