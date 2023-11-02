@@ -3,6 +3,7 @@ using System;
 using DSA5.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DSA5.Infrastructure.Migrations
 {
     [DbContext(typeof(DsaDbContext))]
-    partial class DsaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231102014336_KampftechnikWithKampfart")]
+    partial class KampftechnikWithKampfart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,33 +68,6 @@ namespace DSA5.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Erfahrungsgrad");
-                });
-
-            modelBuilder.Entity("DSA5.Entities.Meta.Korrelationen.KampftechnikHatLeiteigenschaft", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("KampftechnikId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("LastUpdated")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("LeiteigenschaftId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("KampftechnikId");
-
-                    b.HasIndex("LeiteigenschaftId");
-
-                    b.ToTable("KampftechnikHatLeiteigenschaft");
                 });
 
             modelBuilder.Entity("DSA5.Entities.Meta.Korrelationen.KulturEmpfiehltNachteil", b =>
@@ -989,6 +965,9 @@ namespace DSA5.Infrastructure.Migrations
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<Guid>("LeiteigenschaftId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -997,6 +976,8 @@ namespace DSA5.Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LeiteigenschaftId");
 
                     b.HasIndex("SteigerungsfaktorId");
 
@@ -1792,23 +1773,6 @@ namespace DSA5.Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("Fluch");
                 });
 
-            modelBuilder.Entity("DSA5.Entities.Meta.Korrelationen.KampftechnikHatLeiteigenschaft", b =>
-                {
-                    b.HasOne("DSA5.Entities.Welt.Kampftechnik", null)
-                        .WithMany("Leiteigenschaften")
-                        .HasForeignKey("KampftechnikId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DSA5.Entities.Welt.Eigenschaft", "Leiteigenschaft")
-                        .WithMany()
-                        .HasForeignKey("LeiteigenschaftId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Leiteigenschaft");
-                });
-
             modelBuilder.Entity("DSA5.Entities.Meta.Korrelationen.KulturEmpfiehltNachteil", b =>
                 {
                     b.HasOne("DSA5.Entities.Welt.Kultur", null)
@@ -2131,11 +2095,19 @@ namespace DSA5.Infrastructure.Migrations
 
             modelBuilder.Entity("DSA5.Entities.Welt.Kampftechnik", b =>
                 {
+                    b.HasOne("DSA5.Entities.Welt.Eigenschaft", "Leiteigenschaft")
+                        .WithMany()
+                        .HasForeignKey("LeiteigenschaftId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DSA5.Entities.Meta.Steigerungsfaktor", "Steigerungsfaktor")
                         .WithMany()
                         .HasForeignKey("SteigerungsfaktorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Leiteigenschaft");
 
                     b.Navigation("Steigerungsfaktor");
                 });
@@ -2376,11 +2348,6 @@ namespace DSA5.Infrastructure.Migrations
                         .HasForeignKey("DSA5.Entities.Welt.Zaubertrick", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("DSA5.Entities.Welt.Kampftechnik", b =>
-                {
-                    b.Navigation("Leiteigenschaften");
                 });
 
             modelBuilder.Entity("DSA5.Entities.Welt.Kultur", b =>

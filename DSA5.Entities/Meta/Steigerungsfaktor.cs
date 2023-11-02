@@ -8,4 +8,5 @@ public sealed class Steigerungsfaktor : BaseEntity
 {
     public string Name { get; set; } = null!;
     public int ApKostenMultiplikator { get; set; }
+    public int MaxStufeMitBasiskosten { get; set; }
 }
